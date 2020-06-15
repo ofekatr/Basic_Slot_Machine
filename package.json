@@ -1,0 +1,16 @@
+{
+  "name": "Basic_Slot_Machine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html -p 6543"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel-bundler": "^1.12.4",
+    "phaser": "^3.23.0"
+  }
+}
