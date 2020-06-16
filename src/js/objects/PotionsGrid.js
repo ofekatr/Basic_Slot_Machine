@@ -12,7 +12,7 @@ export default class PotionsGrid {
     constructor(game_scene) {
         this.game_scene = game_scene;
         this.create_grid();
-        
+        this.stopping = false;        
     }
 
     create_grid = () => {
@@ -33,9 +33,20 @@ export default class PotionsGrid {
 
     spin = () => {
         this.grid.forEach(col => col.spin());
+        this.stopping = false;
     }
 
-    stop = () => {
-        this.grid.forEach(col=>col.stop());
+    stop = (i = 0) => {
+        this.stopping = true;
+        this.stop_iteration();
+    }
+
+    stop_iteration(i = 0){
+        if (i >= this.grid.length || !this.stopping)
+            return;
+        this.grid[i].stop();
+        this.game_scene.time.delayedCall(500,()=>{
+                this.stop_iteration(i + 1)
+            }, [], this.game_scene)
     }
 }
