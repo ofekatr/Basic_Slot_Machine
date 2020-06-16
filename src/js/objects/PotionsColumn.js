@@ -21,11 +21,15 @@ export default class PotionsColumn {
 
     spawn = ({x = 0, y = 0, frame = 0}) => {
         const SIDE = Measurements.POTION_SIDE;  
+        const frameRate = Phaser.Math.Between(6, 10);
         for (let i = 0; i < ROWS; i += 1) {
+            console.log(frameRate);
             this.potions_arr[i].spawn({
                 x,
                 y:  y + SIDE * i,
-                frame: (frame + i) % FrameNames.POTION_FRAMES.length})
+                frame: (frame + i) % FrameNames.POTION_FRAMES.length,
+                frameRate
+            });
         }
     }
 

@@ -3,14 +3,16 @@ import AnimationNames from '~/js/consts/AnimationNames';
 import FrameNames from '~/js/consts/FrameNames';
 import ArrayMethods from '~/js/utils/ArrayMethods';
 
+let counter = 0;
 
 export default class Potions{
     constructor(gameScene){
         this.game_scene = gameScene;
     }
 
-    spawn = ({x = 0, y = 0, frame = 0}) => {
+    spawn = ({x = 0, y = 0, frame = 0, frameRate = 1}) => {
         this.first_frame_i = frame;
+        this.frameRate = frameRate;
         this.potions = this.game_scene.add.sprite(x, y, SpriteNames.POTIONS, FrameNames.POTION_FRAMES[this.first_frame_i])
         .setOrigin(0, 0);
         this.create_animation();
@@ -18,9 +20,9 @@ export default class Potions{
 
     create_animation = () => {
         this.anim = this.game_scene.anims.create({
-            key: AnimationNames.POTION_SPIN + this.first_frame_i,
+            key: AnimationNames.POTION_SPIN + (counter++),
             frames: this.get_frames(),
-            frameRate: Phaser.Math.Between(10, 15),
+            frameRate: this.frameRate,
             repeat: -1,
         });
     }

@@ -1,12 +1,19 @@
 import Phaser from 'phaser';
 import StateKeys from '~/js/consts/StateKeys';
 import Measurements from '~/js/consts/Measurements';
-import PotionsColumn from '~/js/objects/PotionsColumn';
-import Potions from '~/js/objects/Potions';
+import SoundNames from '~/js/consts/SoundNames';
 import PotionsGrid from '../objects/PotionsGrid';
 
-// const TITLE_FONT_SIZE = 32;
-// const SUBTITLE_FONT_SIZE = 20;
+const bg_music_config = {
+    mute: false,
+    volume: 1,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: 0
+}
+
 export default class GameScene extends Phaser.Scene {
     constructor(){
         super(StateKeys.GAME_SCENE)
@@ -18,12 +25,13 @@ export default class GameScene extends Phaser.Scene {
     create() {
         const { HEIGHT, WIDTH } = Measurements;
         const x = 0, y = 0;
-        // this.potions = new Potions(this);
-        // this.potions.spawn({x: 100, y: 100, frame: 3});
-        // this.potions.spin();
-        // this.potions_arr = new PotionsColumn(this);
-        // this.potions_arr.spawn({x: 100, y: 30});
-        // this.potions_arr.spin();
+
+        this.bg_music = this.sound.add(SoundNames.BACKGROUND);
+        this.bg_music.play(bg_music_config);
+
+        this.spin_sound = this.sound.add(SoundNames.SPIN);
+        this.spin_sound.play(bg_music_config);
+
         this.potions_grid = new PotionsGrid(this);
         this.potions_grid.spawn();
         this.potions_grid.spin();
