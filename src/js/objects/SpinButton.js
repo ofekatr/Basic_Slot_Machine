@@ -31,7 +31,7 @@ export default class SpinButton extends Phaser.GameObjects.Container {
         this.imgs = [];
 
         frames.forEach(img =>{
-            const temp = scene.add.image(0, 0, img).setOrigin(0.5);
+            const temp = scene.add.image(0, 0, img).setOrigin(0.5).setScale(2);
             this.imgs.push(temp);
             this.add(temp);
         });
@@ -53,7 +53,7 @@ export default class SpinButton extends Phaser.GameObjects.Container {
         }
         this.imgs.forEach(img => img.setVisible(!img.visible));
         if (this.spinning){
-            this.handle_stop();
+            this.handle_stop(false);
         }
         else{
             this.handle_spin();
@@ -87,8 +87,8 @@ export default class SpinButton extends Phaser.GameObjects.Container {
         this.imgs.forEach(img => img.setAlpha(val));
     }
 
-    handle_stop = () => {
-        this.grid.stop();
+    handle_stop = (automatic = true) => {
+        this.grid.stop(automatic);
         this.spin_sound.stop();
         this.delayed_stop.remove(false);
     }

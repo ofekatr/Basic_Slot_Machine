@@ -23,10 +23,18 @@ export default class GameScene extends Phaser.Scene {
 
     preload(){
     }
-    
+
     create() {
-        const { HEIGHT, WIDTH } = Measurements;
-        const x = 0, y = 0;
+        const { HEIGHT, WIDTH, POTION_SIDE, CONTAINER_X, CONTAINER_Y,
+                GRID_X, GRID_Y, BUTTON_X, BUTTON_Y 
+            } = Measurements;
+
+        this.scene.run("BackgroundScene");
+        this.scene.sendToBack("BackgroundScene");
+        // this.scene.run(StateKeys.BACKGROUND_SCENE);
+        this.scene.sendToBack(StateKeys.BACKGROUND_SCENE);
+
+        this.container = this.add.sprite(CONTAINER_X, CONTAINER_Y, SpriteNames.CONTAINER)
 
         this.bg_music = this.sound.add(SoundNames.BACKGROUND);
         this.bg_music.play(bg_music_config);
@@ -34,9 +42,9 @@ export default class GameScene extends Phaser.Scene {
         this.spin_sound = this.sound.add(SoundNames.SPIN);
 
         this.potions_grid = new PotionsGrid(this);
-        this.potions_grid.spawn();
+        this.potions_grid.spawn({x: GRID_X, y: GRID_Y});
 
-        this.button = new SpinButton(this, 400, 500, this.potions_grid, this.spin_sound);
+        this.button = new SpinButton(this, BUTTON_X, BUTTON_Y,  this.potions_grid, this.spin_sound);
         this.add.existing(this.button);
     }
 }

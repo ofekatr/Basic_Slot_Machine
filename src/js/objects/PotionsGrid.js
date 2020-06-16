@@ -42,9 +42,13 @@ export default class PotionsGrid {
         this.stopping = false;
     }
 
-    stop = (i = 0) => {
+    stop = (automatic = true) => {
         this.stopping = true;
-        this.stop_iteration();
+        if (automatic){
+            this.stop_iteration();
+            return;
+        }
+        this.grid.forEach(col => col.stop());
     }
 
     stop_iteration(i = 0){
