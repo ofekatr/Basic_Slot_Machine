@@ -23,7 +23,6 @@ export default class PotionsColumn {
         const SIDE = Measurements.POTION_SIDE;  
         const frameRate = Phaser.Math.Between(6, 10);
         for (let i = 0; i < ROWS; i += 1) {
-            console.log(frameRate);
             this.potions_arr[i].spawn({
                 x,
                 y:  y + SIDE * i,
@@ -35,6 +34,10 @@ export default class PotionsColumn {
 
     spin = () => {
         this.potions_arr.forEach(potion => potion.spin());
+    }
+
+    stop = () => {
+        this.potions_arr.forEach(potion => potion.stop());
     }
 
 }

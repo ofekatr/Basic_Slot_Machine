@@ -23,7 +23,6 @@ export default class PotionsGrid {
     }
 
     spawn = ({x, y} = {x: 0, y: 0}) => {
-        console.log("Grid Length", this.grid.length);
         for (let i = 0; i < this.grid.length; i++){
             this.grid[i].spawn({
                 x: x + i * SIDE,
@@ -34,5 +33,9 @@ export default class PotionsGrid {
 
     spin = () => {
         this.grid.forEach(col => col.spin());
+    }
+
+    stop = () => {
+        this.grid.forEach(col=>col.stop());
     }
 }

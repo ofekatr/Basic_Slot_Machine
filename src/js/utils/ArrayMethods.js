@@ -7,7 +7,6 @@ const rotate = (arr, k) => {
 }
 
 const rangeArray = ({ start = 0, end = 0 }) => {
-    console.log(start ,end);
     const step = start > end ? -1 : 1;
     const diff = Math.abs(end - start);
     const arr = new Array(diff);
