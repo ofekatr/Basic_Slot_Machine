@@ -1,17 +1,28 @@
 {
-  "name": "Basic_Slot_Machine",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "phaser3-project-template",
+  "version": "1.1.0",
+  "description": "A Phaser 3 Project Template",
+  "main": "src/index.js",
   "scripts": {
-    "start": "parcel src/index.html -p 6543"
+    "start": "parcel src/index.html"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/photonstorm/phaser3-project-template.git"
+  },
+  "author": "Richard Davey <rdavey@gmail.com> (http://www.photonstorm.com)",
+  "license": "MIT",
+  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
+  "bugs": {
+    "url": "https://github.com/photonstorm/phaser3-project-template/issues"
+  },
+  "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
   "dependencies": {
     "parcel-bundler": "^1.12.4",
-    "phaser": "^3.23.0",
+    "phaser": "^3.20.1",
     "webfontloader": "^1.6.28"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2"
   }
 }

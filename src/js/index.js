@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
 import TitleScene from '~/js/scenes/TitleScene';
-import GameScene from '~/js/scenes/GameScene';
+import GameScene from '~/js/scenes/GameScene.js';
+import PreloaderScene from '~/js/scenes/PreloaderScene.js';
 import Measurements from '~/js/consts/Measurements.js';
-import StateKeys from '~/js/consts/StateKeys';
+import StateKeys from '~/js/consts/StateKeys.js';
 
 var game;
 
@@ -17,7 +18,8 @@ window.onload = () => {
     game = new Phaser.Game(config);
     game.scene.add(StateKeys.TITLE_SCENE, TitleScene);
     game.scene.add(StateKeys.GAME_SCENE, GameScene);
-    game.scene.start(StateKeys.TITLE_SCENE);
+    game.scene.add(StateKeys.PRELOADER_SCENE, PreloaderScene);
+    game.scene.start(StateKeys.PRELOADER_SCENE);
 }
 
 export default game;
