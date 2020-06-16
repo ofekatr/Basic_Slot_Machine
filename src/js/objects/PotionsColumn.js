@@ -7,7 +7,8 @@ const ROWS = 3;
 export default class PotionsColumn {
     
 
-    constructor(game_scene) {
+    constructor(game_scene, finishing_frames) {
+        this.finishing_frames = finishing_frames;
         this.game_scene = game_scene;
         this.create_potions_arr();
     }
@@ -15,7 +16,7 @@ export default class PotionsColumn {
     create_potions_arr = () => {
         this.potions_arr = [];
         for (let i = 0; i < ROWS; i += 1){
-            this.potions_arr.push(new Potion(this.game_scene));
+            this.potions_arr.push(new Potion(this.game_scene, this.finishing_frames[i]));
         }
     }
 
@@ -37,7 +38,9 @@ export default class PotionsColumn {
     }
 
     stop = () => {
-        this.potions_arr.forEach(potion => potion.stop());
+        for (let i = 0; i < this.potions_arr.length; i++){
+            this.potions_arr[i].stop(this.finishing_frames[i]);
+        }
     }
 
 }

@@ -7,6 +7,12 @@ import FrameNames from '~/js/consts/FrameNames';
 const COLUMNS_N = 5;
 const SIDE = Measurements.POTION_SIDE;
 
+const FINISH_FRAMES = [
+    FrameNames.POTION_FRAMES[0],
+    FrameNames.POTION_FRAMES[2],
+    FrameNames.POTION_FRAMES[3]
+]
+
 export default class PotionsGrid {
 
     constructor(game_scene) {
@@ -18,7 +24,7 @@ export default class PotionsGrid {
     create_grid = () => {
         this.grid = new Array(COLUMNS_N);
         for (let i = 0; i < COLUMNS_N; i++){
-            this.grid[i] = new PotionsColumn(this.game_scene);
+            this.grid[i] = new PotionsColumn(this.game_scene, FINISH_FRAMES);
         }
     }
 

@@ -41,7 +41,13 @@ export default class Potions{
         this.potions.play(this.anim.key);
     }
 
-    stop = (frame) => {
-        this.potions.anims.stop();
+    stop = (frame_str) => {
+        const index = this.get_frames().findIndex(f => f.frame === frame_str);
+        if (index === -1){
+            this.potions.stop();
+            return;
+        }
+        const frame = this.potions.anims.currentAnim.frames[index];
+        this.potions.anims.stopOnFrame(frame);
     }
 }
