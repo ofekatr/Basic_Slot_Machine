@@ -30,7 +30,7 @@ export default class Potions{
     get_frames = () => {
         const rotations_n = FrameNames.POTION_FRAMES.length - this.first_frame_i;
         let temp_arr = [...FrameNames.POTION_FRAMES];
-        temp_arr = ArrayMethods.rotate(temp_arr, rotations_n);
+        temp_arr = ArrayMethods.rotate(temp_arr, rotations_n).reverse();
         const frames_arr = new Array(temp_arr.length);
         for (let i = 0; i < frames_arr.length; i++){
             frames_arr[i] = { key: SpriteNames.POTIONS, frame: temp_arr[i]};

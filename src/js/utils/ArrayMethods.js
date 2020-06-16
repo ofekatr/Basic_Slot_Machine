@@ -6,6 +6,11 @@ const rotate = (arr, k) => {
     return temp_arr;
 }
 
+const rotateLeft = (arr, k) => {
+    const temp_arr = [...arr];
+    return temp_arr.slice(k).concat(temp_arr.slice(0,k));
+}
+
 const rangeArray = ({ start = 0, end = 0 }) => {
     const step = start > end ? -1 : 1;
     const diff = Math.abs(end - start);
