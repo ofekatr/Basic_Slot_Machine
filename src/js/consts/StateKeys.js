@@ -1,3 +1,7 @@
+/** @file String keys for scenes in the game.
+ *	@author Ofek Atar
+ */
+
 const TITLE_SCENE = "TitleScene";
 const GAME_SCENE = "GameScene";
 const PRELOADER_SCENE = "PreloaderScene";

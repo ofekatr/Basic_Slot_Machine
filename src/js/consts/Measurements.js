@@ -1,3 +1,7 @@
+/** @file Numerical measurements for several properties and objects in the game.
+ *	@author Ofek Atar
+ */
+
 const WIDTH = 1920;
 const HEIGHT = 1053;
 const POTION_SIDE = 141;

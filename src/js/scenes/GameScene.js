@@ -1,3 +1,7 @@
+/** @file Implements the game scene for the game.
+ *	@author Ofek Atar
+ */
+
 import Phaser from 'phaser';
 import StateKeys from '~/js/consts/StateKeys';
 import Measurements from '~/js/consts/Measurements';

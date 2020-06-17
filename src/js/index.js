@@ -1,3 +1,7 @@
+/** @file Initialalization of the game.
+ *	@author Ofek Atar
+ */
+
 import Phaser from 'phaser';
 import TitleScene from '~/js/scenes/TitleScene';
 import GameScene from '~/js/scenes/GameScene.js';
@@ -6,13 +10,14 @@ import BackgroundScene from '~/js/scenes/BackgroundScene.js';
 import Measurements from '~/js/consts/Measurements.js';
 import StateKeys from '~/js/consts/StateKeys.js';
 
+/** @type {Phaser.Game} The game instance. */
 var game;
 
+/** @type {{width: number, height: number, type: number}} Configurations for the game. */
 const config = {
     width: Measurements.WIDTH,
     height: Measurements.HEIGHT,
     type: Phaser.AUTO,
-    // physics: ...,
 }
 
 game = new Phaser.Game(config);

@@ -1,3 +1,6 @@
+/** @file Manages font loading.
+ *	@author Ofek Atar
+ */
 import Phaser from 'phaser'
 
 import WebFontLoader from 'webfontloader'

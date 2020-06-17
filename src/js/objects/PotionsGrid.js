@@ -1,3 +1,7 @@
+/** @file Implements the the potions grid sprite.
+ *	@author Ofek Atar
+ */
+
 import Phaser from 'phaser';
 import Measurements from '~/js/consts/Measurements';
 import PotionsColumn from '~/js/objects/PotionsColumn';
@@ -37,6 +41,7 @@ export default class PotionsGrid {
         }
     }
 
+    
     spin = () => {
         this.grid.forEach(col => col.spin());
         this.stopping = false;
@@ -51,6 +56,10 @@ export default class PotionsGrid {
         this.grid.forEach(col => col.stop());
     }
 
+    /**
+     * 
+     * @param {*} i 
+     */
     stop_iteration(i = 0){
         if (i >= this.grid.length || !this.stopping)
             return;

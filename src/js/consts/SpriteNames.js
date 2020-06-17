@@ -1,3 +1,7 @@
+/** @file String keys for sprites in the game.  
+ *	@author Ofek Atar
+ */
+
 const BACKGROUND = 'background';
 const CONTAINER = 'container';
 const POTIONS = 'potions';
