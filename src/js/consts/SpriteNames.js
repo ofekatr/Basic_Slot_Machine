@@ -13,10 +13,13 @@ const BUTTON_STOP = 'button_stop';
 /** @type {string} String key for spin button sprite.*/
 const BUTTON_SPIN = 'button_spin';
 
+const POTIONS_COLUMN = 'potions_column';
+
 export default {
     BACKGROUND,
     CONTAINER,
     POTIONS,
     BUTTON_STOP,
     BUTTON_SPIN,
+    POTIONS_COLUMN,
 }

@@ -11,8 +11,10 @@ import SoundNames from '~/js/consts/SoundNames';
 import background_img_url from '~/assets/background.png';
 import container_url from '~/assets/container.png';
 
-import potions_url from '~/assets/potions.png';
-import potions_atlas_url from '~/assets/potions.json';
+// import potions_url from '~/assets/potions.png';
+// import potions_atlas_url from '~/assets/potions.json';
+
+import potions_col_url from '~/assets/potions_column.png';
 
 import button_spin_url from '~/assets/button_01.png';
 import button_stop_url from '~/assets/button_02.png';
@@ -109,7 +111,8 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image(SpriteNames.CONTAINER, container_url);
         this.load.image(SpriteNames.BUTTON_SPIN, button_spin_url);
         this.load.image(SpriteNames.BUTTON_STOP, button_stop_url);
-        this.load.atlas(SpriteNames.POTIONS, potions_url, potions_atlas_url);
+        this.load.image(SpriteNames.POTIONS_COLUMN, potions_col_url);
+        // this.load.atlas(SpriteNames.POTIONS, potions_url, potions_atlas_url);
     }
 
     create() {

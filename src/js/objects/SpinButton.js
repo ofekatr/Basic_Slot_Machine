@@ -3,6 +3,7 @@
  */
 
 import SpriteNames from '~/js/consts/SpriteNames';
+import PotionsTable from '~/js/objects/PotionsTable';
 import FrameNames from '~/js/consts/FrameNames';
 import { Game } from 'phaser';
 
@@ -35,10 +36,10 @@ export default class SpinButton extends Phaser.GameObjects.Container {
      * @param {Game.Scene} scene The scoping scene for this sprite.
      * @param {number} x X index to present by.
      * @param {number} y Y index to present by.
-     * @param {PotionsGrid} grid Grid instance to spin and stop.
+     * @param {PotionsTable} table Table instance to spin and stop.
      * @param {Phaser.Sound.BaseSound} spin_sound Spinning sound effect.
      */
-    constructor(scene, x = 0, y = 0, grid, spin_sound){
+    constructor(scene, x = 0, y = 0, table, spin_sound){
         
         super(scene, x, y);
         /** @type {boolean} Indicates if the machine is currently spinning. */
@@ -48,7 +49,7 @@ export default class SpinButton extends Phaser.GameObjects.Container {
         this.spin_sound = spin_sound;
         this.x = x;
         this.y = y;
-        this.grid = grid;
+        this.table = table;
         /** @type {Array<string>} String keys for the button's sprites. */
         this.imgs = [];
 
@@ -73,14 +74,16 @@ export default class SpinButton extends Phaser.GameObjects.Container {
         if (this.disabled){
             return;
         }
-        this.imgs.forEach(img => img.setVisible(!img.visible));
         if (this.spinning){
+            this.imgs.forEach(img => img.setVisible(!img.visible));
             this.handle_stop(false);
+            this.spinning = !this.spinning;
         }
-        else{
+        else if(this.table.can_spin()){
+            this.imgs.forEach(img => img.setVisible(!img.visible));
             this.handle_spin();
+            this.spinning = !this.spinning;
         }
-        this.spinning = !this.spinning;
     }
 
     /**
@@ -88,7 +91,7 @@ export default class SpinButton extends Phaser.GameObjects.Container {
      */
     handle_spin = () => {        
         this.change_opacity(0.5);
-        this.grid.spin();
+        this.table.start();
         this.spin_sound.play(music_config);
         this.disabled = true;
 
@@ -126,7 +129,7 @@ export default class SpinButton extends Phaser.GameObjects.Container {
      * Executes methods relevant when stop button is clicked.
      */
     handle_stop = (automatic = true) => {
-        this.grid.stop(automatic);
+        this.table.stop(automatic);
         this.spin_sound.stop();
         this.delayed_stop.remove(false);
     }
