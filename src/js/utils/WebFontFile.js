@@ -1,10 +1,13 @@
-/** @file Manages font loading.
+/** @file The WebFontFile class.
  *	@author Ofek Atar
  */
 import Phaser from 'phaser'
 
 import WebFontLoader from 'webfontloader'
 
+/**
+ * Manages font loading.
+ */
 export default class WebFontFile extends Phaser.Loader.File
 {
 	/**

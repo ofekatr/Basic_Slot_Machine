@@ -1,4 +1,4 @@
-/** @file Implements the sprite for a single potions tiles column in the potions grid.
+/** @file The potions tiles column class.
  *	@author Ofek Atar
  */
 
@@ -6,20 +6,24 @@ import Potion from '~/js/objects/Potions';
 import Measurements from '~/js/consts/Measurements';
 import FrameNames from '~/js/consts/FrameNames';
 
-
+/** @type {number} The number of rows in the column. */
 const ROWS = 3;
 
+/** Implements the sprite for a single potions tiles column in the potions grid. */
 export default class PotionsColumn {
     
-    /** Constructor. */
+    /**
+     * Constructor.
+     * @param {Phaser.Scene} game_scene The scoping scene for this sprite.
+     * @param {number} finishing_frames The index of the frame to stop animation on.
+     */
     constructor(game_scene, finishing_frames) {
         this.finishing_frames = finishing_frames;
         this.game_scene = game_scene;
         this.create_potions_arr();
     }
 
-
-    /** Initializes the potion objects array. */
+    /** Initializes the potions tiles column. */
     create_potions_arr = () => {
         this.potions_arr = [];
         for (let i = 0; i < ROWS; i += 1){
@@ -29,10 +33,12 @@ export default class PotionsColumn {
 
     /**
      * Add and show the column.
-     * @param {Object<number, number, number>} param0 indexes and an animation frame to present by.
+     * @param {{x: number, y: number, frame: number}} param0 indices and an animation frame to present by.
      */
     spawn = ({x = 0, y = 0, frame = 0}) => {
+        /** @type {number} */
         const SIDE = Measurements.POTION_SIDE;  
+        /** @type {number} A frame rate generated randomly between 6 - 10. */
         const frameRate = Phaser.Math.Between(6, 10);
         for (let i = 0; i < ROWS; i += 1) {
             this.potions_arr[i].spawn({

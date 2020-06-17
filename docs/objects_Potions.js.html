@@ -26,7 +26,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @file Implements the sprite for a single potions tile in the potions grid.
+            <pre class="prettyprint source linenums"><code>/** @file The potions tile class.
  *	@author Ofek Atar
  */
 
@@ -35,13 +35,25 @@ import AnimationNames from '~/js/consts/AnimationNames';
 import FrameNames from '~/js/consts/FrameNames';
 import ArrayMethods from '~/js/utils/ArrayMethods';
 
+/** @type {number} An instances counter, for animation key strings purposes.*/
 let counter = 0;
 
+/**
+ * Implements the sprite for a single potions tile in the potions grid.
+ */
 export default class Potions{
+    /**
+     * Constructor
+     * @param {Phaser.Scene} gameScene The scoping scene for this sprite.
+     */
     constructor(gameScene){
         this.game_scene = gameScene;
     }
 
+    /**
+     * Add and show the column.
+     * @param {{x: number, y: number, frame: number}} param0 indices and an animation frame to present by.
+     */
     spawn = ({x = 0, y = 0, frame = 0, frameRate = 1}) => {
         this.first_frame_i = frame;
         this.frameRate = frameRate;
@@ -50,6 +62,9 @@ export default class Potions{
         this.create_animation();
     }
 
+    /**
+     * Create the spinning animation.
+     */
     create_animation = () => {
         this.anim = this.game_scene.anims.create({
             key: AnimationNames.POTION_SPIN + (counter++),
@@ -59,26 +74,38 @@ export default class Potions{
         });
     }
 
+    /**
+     * Generate the spinning animation frames array for this potions tile.
+     * @returns The generated frames array.
+     */
     get_frames = () => {
+        /** @type {number} The number of rotations for the array. */
         const rotations_n = FrameNames.POTION_FRAMES.length - this.first_frame_i;
+        /** @type {Array&lt;string>} A copy of the spinning animation frames key strings. */
         let temp_arr = [...FrameNames.POTION_FRAMES];
         temp_arr = ArrayMethods.rotate(temp_arr, rotations_n).reverse();
+        /** @type {Array&lt;Phaser.Animations.AnimationFrame>} The spinning animation frames array. */
         const frames_arr = new Array(temp_arr.length);
         for (let i = 0; i &lt; frames_arr.length; i++){
             frames_arr[i] = { key: SpriteNames.POTIONS, frame: temp_arr[i]};
         }
         return frames_arr;
     }
+
+    /** Starts the spinning animation of this potions tile. */
     spin = () => {
         this.potions.play(this.anim.key);
     }
 
+    /** Stops the spinning animation of this potions tile. */
     stop = (frame_str) => {
+        /** @type {number} index of the given frame key string in this animations's frames array. */
         const index = this.get_frames().findIndex(f => f.frame === frame_str);
         if (index === -1){
             this.potions.stop();
             return;
         }
+        /** @type {Phaser.Animations.AnimationFrame} The frame to be stopped on.*/
         const frame = this.potions.anims.currentAnim.frames[index];
         this.potions.anims.stopOnFrame(frame);
     }
@@ -92,13 +119,13 @@ export default class Potions{
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports_module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#config">config</a></li><li><a href="global.html#game">game</a></li><li><a href="global.html#rangeArray">rangeArray</a></li><li><a href="global.html#rotate">rotate</a></li><li><a href="global.html#rotateLeft">rotateLeft</a></li><li><a href="global.html#stop_iteration">stop_iteration</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BACKGROUND">BACKGROUND</a></li><li><a href="global.html#BACKGROUND_SCENE">BACKGROUND_SCENE</a></li><li><a href="global.html#bg_music_config">bg_music_config</a></li><li><a href="global.html#BUTTON_FRAMES">BUTTON_FRAMES</a></li><li><a href="global.html#BUTTON_SPIN">BUTTON_SPIN</a></li><li><a href="global.html#BUTTON_STOP">BUTTON_STOP</a></li><li><a href="global.html#BUTTON_X">BUTTON_X</a></li><li><a href="global.html#BUTTON_Y">BUTTON_Y</a></li><li><a href="global.html#COLUMNS_N">COLUMNS_N</a></li><li><a href="global.html#config">config</a></li><li><a href="global.html#CONTAINER">CONTAINER</a></li><li><a href="global.html#CONTAINER_X">CONTAINER_X</a></li><li><a href="global.html#CONTAINER_Y">CONTAINER_Y</a></li><li><a href="global.html#counter">counter</a></li><li><a href="global.html#FINISH_FRAMES">FINISH_FRAMES</a></li><li><a href="global.html#font_name">font_name</a></li><li><a href="global.html#game">game</a></li><li><a href="global.html#GAME_SCENE">GAME_SCENE</a></li><li><a href="global.html#GRID_X">GRID_X</a></li><li><a href="global.html#GRID_Y">GRID_Y</a></li><li><a href="global.html#HEIGHT">HEIGHT</a></li><li><a href="global.html#music_config">music_config</a></li><li><a href="global.html#POTION_FRAMES">POTION_FRAMES</a></li><li><a href="global.html#POTION_SIDE">POTION_SIDE</a></li><li><a href="global.html#POTION_SPIN">POTION_SPIN</a></li><li><a href="global.html#POTIONS">POTIONS</a></li><li><a href="global.html#PRELOADER_SCENE">PRELOADER_SCENE</a></li><li><a href="global.html#rangeArray">rangeArray</a></li><li><a href="global.html#rotate">rotate</a></li><li><a href="global.html#rotateLeft">rotateLeft</a></li><li><a href="global.html#ROWS">ROWS</a></li><li><a href="global.html#SIDE">SIDE</a></li><li><a href="global.html#SPIN">SPIN</a></li><li><a href="global.html#STOP">STOP</a></li><li><a href="global.html#stop_iteration">stop_iteration</a></li><li><a href="global.html#SUBTITLE_FONT_STYLE">SUBTITLE_FONT_STYLE</a></li><li><a href="global.html#TITLE_FONT_STYLE">TITLE_FONT_STYLE</a></li><li><a href="global.html#TITLE_SCENE">TITLE_SCENE</a></li><li><a href="global.html#WIDTH">WIDTH</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 17 2020 13:23:54 GMT+0300 (Israel Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 17 2020 14:36:29 GMT+0300 (Israel Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

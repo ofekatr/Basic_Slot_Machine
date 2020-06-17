@@ -1,4 +1,4 @@
-/** @file Implements the the potions grid sprite.
+/** @file The potions tiles grid class.
  *	@author Ofek Atar
  */
 
@@ -7,24 +7,32 @@ import Measurements from '~/js/consts/Measurements';
 import PotionsColumn from '~/js/objects/PotionsColumn';
 import FrameNames from '~/js/consts/FrameNames';
 
-
+/** @type {number} The number of columns in the grid. */
 const COLUMNS_N = 5;
+/** @type {number} */
 const SIDE = Measurements.POTION_SIDE;
 
+/** @type {Array<string>} The finishing frame key strings for each row. */
 const FINISH_FRAMES = [
     FrameNames.POTION_FRAMES[0],
     FrameNames.POTION_FRAMES[2],
     FrameNames.POTION_FRAMES[3]
 ]
 
+/** Implements the the potions grid sprite. */
 export default class PotionsGrid {
 
+    /**
+     * Constructor.
+     * @param {Phaser.Scene} gameScene The scoping scene for this sprite.
+     */
     constructor(game_scene) {
         this.game_scene = game_scene;
         this.create_grid();
         this.stopping = false;        
     }
 
+    /** Initializes the potions tiles grid. */
     create_grid = () => {
         this.grid = new Array(COLUMNS_N);
         for (let i = 0; i < COLUMNS_N; i++){
@@ -32,6 +40,10 @@ export default class PotionsGrid {
         }
     }
 
+    /**
+     * Add and show the grid.
+     * @param {{x: number, y: number}} param0 indices to present by.
+     */
     spawn = ({x, y} = {x: 0, y: 0}) => {
         for (let i = 0; i < this.grid.length; i++){
             this.grid[i].spawn({
@@ -41,12 +53,13 @@ export default class PotionsGrid {
         }
     }
 
-    
+    /** Starts the spinning animation of all potions in the grid. */
     spin = () => {
         this.grid.forEach(col => col.spin());
         this.stopping = false;
     }
 
+    /** Stops the spinning animation of all potions in the grid. */
     stop = (automatic = true) => {
         this.stopping = true;
         if (automatic){

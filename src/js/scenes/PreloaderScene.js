@@ -1,4 +1,4 @@
-/** @file Implements the loading scene for the game - includes a loading bar.
+/** @file The loading scene class.
  *	@author Ofek Atar
  */
 
@@ -14,17 +14,18 @@ import container_url from '~/assets/container.png';
 import potions_url from '~/assets/potions.png';
 import potions_atlas_url from '~/assets/potions.json';
 
-// import button_url from '~/assets/button.png';
-// import button_atlas_url from '~/assets/button.json';
-
 import button_spin_url from '~/assets/button_01.png';
 import button_stop_url from '~/assets/button_02.png';
 
 import background_music_url from '~/assets/BG_Music.wav';
 import spin_sound_url from '~/assets/Spin.wav';
 
+/** @type {string} The font name. */
 const font_name = 'Press Start 2P';
 
+/**
+ * Implements the loading scene for the game - includes a loading bar.
+ */
 export default class PreloaderScene extends Phaser.Scene {
 
     preload = () => {
@@ -79,7 +80,7 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.on('fileprogress', function (file) {
             assetText.setText('Loading asset: ' + file.key);
         });
-
+        
         this.load.on('complete', function () {
             progressBar.destroy();
             progressBox.destroy();
@@ -87,24 +88,22 @@ export default class PreloaderScene extends Phaser.Scene {
             percentText.destroy();
             assetText.destroy();
         });
-        
-        // this.load.image('logo', logo_url);
 
         this.load_images();
         this.load_audio();
         const fonts = new WebFontFile(this.load, font_name);
         this.load.addFile(fonts);
-
-        // for (var i = 0; i < 500; i++) {
-        //     this.load.image('logo'+i, logo_url);
-        // }
     }
 
+    /**
+     * Loads the audio files to the game.
+     */
     load_audio = () => {
         this.load.audio(SoundNames.BACKGROUND, background_music_url);
         this.load.audio(SoundNames.SPIN, spin_sound_url);
     }
 
+    /** Loads the image files to the game. */
     load_images = () => {
         this.load.image(SpriteNames.BACKGROUND, background_img_url);
         this.load.image(SpriteNames.CONTAINER, container_url);
@@ -114,7 +113,6 @@ export default class PreloaderScene extends Phaser.Scene {
     }
 
     create() {
-        var logo = this.add.image(400, 300, 'logo');
         this.scene.start(StateKeys.TITLE_SCENE);
     }
 }

@@ -1,4 +1,4 @@
-/** @file Implements the tile scene for the game.
+/** @file The title scene class.
  *	@author Ofek Atar
  */
 
@@ -6,21 +6,28 @@ import Phaser from 'phaser';
 import StateKeys from '~/js/consts/StateKeys';
 import Measurements from '~/js/consts/Measurements';
 
-// const TITLE_FONT_SIZE = 32;
-// const SUBTITLE_FONT_SIZE = 20;
-
+/** Style configurations for the title.
+ * @type {{fontSize: number, fontColor: number, fontFamily: string}} 
+*/
 const TITLE_FONT_STYLE = {
     fontSize: 32,
     fontColor: 0x4AF626,
     fontFamily: '"Press Start 2P"',
 }
 
+/** Style configurations for the subtitle.
+ * @type {{fontSize: number, fontColor: number, fontFamily: string}} 
+*/
 const SUBTITLE_FONT_STYLE = {
     fontSize: 20,
     fontFamily: '"Press Start 2P"',
 }
 
+/** Implements the title scene for the game. */
 export default class TitleScene extends Phaser.Scene {
+    /**
+     * Constructor.
+     */
     constructor(){
         super(StateKeys.TITLE_SCENE)
     }
@@ -39,6 +46,4 @@ export default class TitleScene extends Phaser.Scene {
     }
 
     start_game = () => this.scene.start(StateKeys.GAME_SCENE)
-
-
 }

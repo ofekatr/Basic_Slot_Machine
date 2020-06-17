@@ -21,7 +21,6 @@ const config = {
 }
 
 game = new Phaser.Game(config);
-console.log(StateKeys.BACKGROUND_SCENE);
 game.scene.add(StateKeys.TITLE_SCENE, TitleScene);
 game.scene.add(StateKeys.BACKGROUND_SCENE, BackgroundScene);
 game.scene.add(StateKeys.GAME_SCENE, GameScene);
