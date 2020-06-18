@@ -35,8 +35,10 @@ import StateKeys from '~/js/consts/StateKeys';
 import Measurements from '~/js/consts/Measurements';
 import SoundNames from '~/js/consts/SoundNames';
 import PotionsGrid from '../objects/PotionsGrid';
+import PotionsColumn from '../objects/PotionsColumn';
 import SpriteNames from '../consts/SpriteNames';
 import SpinButton from '../objects/SpinButton';
+import PotionsTable from '../objects/PotionsTable';
 
 /**
  * @type {Phaser.Types.Sound.SoundConfig} The sound configurations for
@@ -73,7 +75,7 @@ export default class GameScene extends Phaser.Scene {
         /** Add background scene. */
         this.scene.run("BackgroundScene");
         this.scene.sendToBack(StateKeys.BACKGROUND_SCENE);
-
+        
         /** Add grid background music. */
         this.bg_music = this.sound.add(SoundNames.BACKGROUND);
         this.bg_music.play(bg_music_config);
@@ -81,16 +83,19 @@ export default class GameScene extends Phaser.Scene {
         /** Add grid container sprite. */
         this.container = this.add.sprite(CONTAINER_X, CONTAINER_Y, SpriteNames.CONTAINER)
 
+        /** Add potions table sprite */
+        this.table = new PotionsTable(GRID_X, GRID_Y, this);
+
         /** Add spinning sound effect. */
         this.spin_sound = this.sound.add(SoundNames.SPIN);
-        
-        /** Add potions tiles grid sprite. */
-        this.potions_grid = new PotionsGrid(this);
-        this.potions_grid.spawn({x: GRID_X, y: GRID_Y});
 
         /** Add spin/stop button. */
-        this.button = new SpinButton(this, BUTTON_X, BUTTON_Y,  this.potions_grid, this.spin_sound);
+        this.button = new SpinButton(this, BUTTON_X, BUTTON_Y,  this.table, this.spin_sound);
         this.add.existing(this.button);
+    }
+
+    update() {
+        this.table.spin();
     }
 }</code></pre>
         </article>
@@ -102,13 +107,13 @@ export default class GameScene extends Phaser.Scene {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BACKGROUND">BACKGROUND</a></li><li><a href="global.html#BACKGROUND_SCENE">BACKGROUND_SCENE</a></li><li><a href="global.html#bg_music_config">bg_music_config</a></li><li><a href="global.html#BUTTON_FRAMES">BUTTON_FRAMES</a></li><li><a href="global.html#BUTTON_SPIN">BUTTON_SPIN</a></li><li><a href="global.html#BUTTON_STOP">BUTTON_STOP</a></li><li><a href="global.html#BUTTON_X">BUTTON_X</a></li><li><a href="global.html#BUTTON_Y">BUTTON_Y</a></li><li><a href="global.html#COLUMNS_N">COLUMNS_N</a></li><li><a href="global.html#config">config</a></li><li><a href="global.html#CONTAINER">CONTAINER</a></li><li><a href="global.html#CONTAINER_X">CONTAINER_X</a></li><li><a href="global.html#CONTAINER_Y">CONTAINER_Y</a></li><li><a href="global.html#counter">counter</a></li><li><a href="global.html#FINISH_FRAMES">FINISH_FRAMES</a></li><li><a href="global.html#font_name">font_name</a></li><li><a href="global.html#game">game</a></li><li><a href="global.html#GAME_SCENE">GAME_SCENE</a></li><li><a href="global.html#GRID_X">GRID_X</a></li><li><a href="global.html#GRID_Y">GRID_Y</a></li><li><a href="global.html#HEIGHT">HEIGHT</a></li><li><a href="global.html#music_config">music_config</a></li><li><a href="global.html#POTION_FRAMES">POTION_FRAMES</a></li><li><a href="global.html#POTION_SIDE">POTION_SIDE</a></li><li><a href="global.html#POTION_SPIN">POTION_SPIN</a></li><li><a href="global.html#POTIONS">POTIONS</a></li><li><a href="global.html#PRELOADER_SCENE">PRELOADER_SCENE</a></li><li><a href="global.html#rangeArray">rangeArray</a></li><li><a href="global.html#rotate">rotate</a></li><li><a href="global.html#rotateLeft">rotateLeft</a></li><li><a href="global.html#ROWS">ROWS</a></li><li><a href="global.html#SIDE">SIDE</a></li><li><a href="global.html#SPIN">SPIN</a></li><li><a href="global.html#STOP">STOP</a></li><li><a href="global.html#stop_iteration">stop_iteration</a></li><li><a href="global.html#SUBTITLE_FONT_STYLE">SUBTITLE_FONT_STYLE</a></li><li><a href="global.html#TITLE_FONT_STYLE">TITLE_FONT_STYLE</a></li><li><a href="global.html#TITLE_SCENE">TITLE_SCENE</a></li><li><a href="global.html#WIDTH">WIDTH</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BACKGROUND">BACKGROUND</a></li><li><a href="global.html#BACKGROUND_SCENE">BACKGROUND_SCENE</a></li><li><a href="global.html#bg_music_config">bg_music_config</a></li><li><a href="global.html#BUTTON_FRAMES">BUTTON_FRAMES</a></li><li><a href="global.html#BUTTON_SPIN">BUTTON_SPIN</a></li><li><a href="global.html#BUTTON_STOP">BUTTON_STOP</a></li><li><a href="global.html#BUTTON_X">BUTTON_X</a></li><li><a href="global.html#BUTTON_Y">BUTTON_Y</a></li><li><a href="global.html#COLUMNS_N">COLUMNS_N</a></li><li><a href="global.html#config">config</a></li><li><a href="global.html#CONTAINER">CONTAINER</a></li><li><a href="global.html#CONTAINER_X">CONTAINER_X</a></li><li><a href="global.html#CONTAINER_Y">CONTAINER_Y</a></li><li><a href="global.html#counter">counter</a></li><li><a href="global.html#FINISH_FRAMES">FINISH_FRAMES</a></li><li><a href="global.html#font_name">font_name</a></li><li><a href="global.html#game">game</a></li><li><a href="global.html#GAME_SCENE">GAME_SCENE</a></li><li><a href="global.html#GRID_X">GRID_X</a></li><li><a href="global.html#GRID_Y">GRID_Y</a></li><li><a href="global.html#HEIGHT">HEIGHT</a></li><li><a href="global.html#music_config">music_config</a></li><li><a href="global.html#POTION_FRAMES">POTION_FRAMES</a></li><li><a href="global.html#POTION_SIDE">POTION_SIDE</a></li><li><a href="global.html#POTION_SPIN">POTION_SPIN</a></li><li><a href="global.html#POTIONS">POTIONS</a></li><li><a href="global.html#POTIONS_COLUMN">POTIONS_COLUMN</a></li><li><a href="global.html#PRELOADER_SCENE">PRELOADER_SCENE</a></li><li><a href="global.html#rangeArray">rangeArray</a></li><li><a href="global.html#rotate">rotate</a></li><li><a href="global.html#rotateLeft">rotateLeft</a></li><li><a href="global.html#ROWS">ROWS</a></li><li><a href="global.html#SIDE">SIDE</a></li><li><a href="global.html#SPIN">SPIN</a></li><li><a href="global.html#STOP">STOP</a></li><li><a href="global.html#stop_iteration">stop_iteration</a></li><li><a href="global.html#SUBTITLE_FONT_STYLE">SUBTITLE_FONT_STYLE</a></li><li><a href="global.html#TITLE_FONT_STYLE">TITLE_FONT_STYLE</a></li><li><a href="global.html#TITLE_SCENE">TITLE_SCENE</a></li><li><a href="global.html#WIDTH">WIDTH</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 17 2020 14:36:29 GMT+0300 (Israel Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Jun 18 2020 03:08:05 GMT+0300 (Israel Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

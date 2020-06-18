@@ -12,7 +12,7 @@ const POTIONS = 'potions';
 const BUTTON_STOP = 'button_stop';
 /** @type {string} String key for spin button sprite.*/
 const BUTTON_SPIN = 'button_spin';
-
+/** @type {string} String key for potions column sprite */
 const POTIONS_COLUMN = 'potions_column';
 
 export default {
